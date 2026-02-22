@@ -1,5 +1,5 @@
 {
-    "name": "node20-tfjs",
+    "name": "node22-tfjs",
     "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bullseye",
     "features": {},
     "postCreateCommand": "npm install",
