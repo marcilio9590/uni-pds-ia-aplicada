@@ -10,7 +10,6 @@ export const events = {
     recommendationsReady: 'recommendations:ready',
     recommend: 'recommend',
 
-    // events used by the tf-vis integration
     tfvisData: 'tfvis:data',
     tfvisLogs: 'tfvis:logs',
 }
