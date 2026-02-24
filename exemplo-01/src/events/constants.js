@@ -9,6 +9,10 @@ export const events = {
     modelProgressUpdate: 'model:progress-update',
     recommendationsReady: 'recommendations:ready',
     recommend: 'recommend',
+
+    // events used by the tf-vis integration
+    tfvisData: 'tfvis:data',
+    tfvisLogs: 'tfvis:logs',
 }
 
 export const workerEvents = {
