@@ -11,28 +11,41 @@ import { FormController } from './controllers/formController.js';
 
     // Set current year
     view.setYear();
+    // Initialize controller and setup form event listeners immediately
+    const controller = new FormController(aiService, translationService, view);
+    controller.setupEventListeners();
 
-    // Check requirements
+    // Attempt to check requirements (show warnings) but don't block UI
     const errors = await aiService.checkRequirements();
     if (errors) {
         view.showError(errors);
-        return;
+        // continue: allow form to work with fallback parameters
     }
 
-    // Wait for user gesture to initialize translation service
+    // Try to fetch model params; if unavailable, use sensible defaults
+    try {
+        const params = await aiService.getParams();
+        if (params) {
+            view.initializeParameters(params);
+        } else {
+            throw new Error('Params not available');
+        }
+    } catch (err) {
+        // Fallback defaults so UI controls are usable
+        view.initializeParameters({
+            defaultTemperature: 0.7,
+            maxTemperature: 1,
+            defaultTopK: 40,
+            maxTopK: 100,
+        });
+    }
+
+    // Wait for user gesture to initialize translation service (optional)
     const initBtn = document.getElementById('init-translation-btn');
     initBtn.addEventListener('click', async () => {
         try {
             await translationService.initialize();
-            // Get and initialize AI parameters
-            const params = await aiService.getParams();
-            view.initializeParameters(params);
-
-            // Initialize controller and setup event listeners
-            const controller = new FormController(aiService, translationService, view);
-            controller.setupEventListeners();
-
-            console.log('Application initialized successfully');
+            console.log('Translation initialized by user gesture');
             initBtn.disabled = true;
             initBtn.textContent = 'Tradução Iniciada';
         } catch (error) {

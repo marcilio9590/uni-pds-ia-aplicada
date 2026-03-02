@@ -53,7 +53,7 @@ export class AIService {
         console.log('Language Model Availability:', availability);
 
         if (availability === 'available') {
-            return null;
+            await this.startTranslate();
         }
 
         if (availability === 'unavailable') {
@@ -66,31 +66,35 @@ export class AIService {
 
         if (availability === 'downloadable') {
             errors.push(`⚠️ O modelo de linguagem de IA precisa ser baixado, baixando agora... (acompanhe o progresso no terminal do chrome)`);
-            try {
-                const session = await LanguageModel.create({
-                    expectedInputLanguages: ["en"],
-                    monitor(m) {
-                        m.addEventListener('downloadprogress', (e) => {
-                            const percent = ((e.loaded / e.total) * 100).toFixed(0);
-                            console.log(`Downloaded ${percent}%`);
-                        });
-                    }
-                });
-                await session.prompt('Hello');
-                session.destroy();
-
-                // Re-check availability after download
-                const newAvailability = await LanguageModel.availability({ languages: ["en"] });
-                if (newAvailability === 'available') {
-                    return null; // Download successful
-                }
-            } catch (error) {
-                console.error('Error downloading model:', error);
-                errors.push(`⚠️ Erro ao baixar o modelo: ${error.message}`);
-            }
+            await startTranslate();
         }
 
         return errors.length > 0 ? errors : null;
+    }
+
+    async startTranslate(){
+        try {
+            const session = await LanguageModel.create({
+                expectedInputLanguages: ["en"],
+                monitor(m) {
+                    m.addEventListener('downloadprogress', (e) => {
+                        const percent = ((e.loaded / e.total) * 100).toFixed(0);
+                        console.log(`Downloaded ${percent}%`);
+                    });
+                }
+            });
+            await session.prompt('Hello');
+            session.destroy();
+
+            // Re-check availability after download
+            const newAvailability = await LanguageModel.availability({ languages: ["en"] });
+            if (newAvailability === 'available') {
+                return null; // Download successful
+            }
+        } catch (error) {
+            console.error('Error downloading model:', error);
+            errors.push(`⚠️ Erro ao baixar o modelo: ${error.message}`);
+        }
     }
 
     async getParams() {
