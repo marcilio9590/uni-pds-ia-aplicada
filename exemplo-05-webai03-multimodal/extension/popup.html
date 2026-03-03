@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resumidor Com IA Local</title>
+    <link rel="stylesheet" href="styles/popup.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Resumidor Com IA Local</h1>
+      <div>
+        <label for="language">Idioma de saída:</label>
+        <select id="language">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      <div>
+        <label>Formato de saída:</label>
+        <br />
+        <input
+          type="radio"
+          name="format"
+          id="format-summary"
+          value="summary"
+          checked
+        />
+        <label for="format-summary">Resumo</label>
+        <br />
+        <input type="radio" name="format" id="format-points" value="points" />
+        <label for="format-points">Pontos principais</label>
+        <br />
+        <input type="radio" name="format" id="format-actions" value="actions" />
+        <label for="format-actions">Lista de ações</label>
+      </div>
+      <button id="btnSummarize">Resumo</button>
+      <div id="output" aria-live="polite"></div>
+      <div id="progress"></div>
+    </div>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

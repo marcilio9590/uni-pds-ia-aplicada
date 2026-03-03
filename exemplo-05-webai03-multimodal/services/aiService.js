@@ -174,3 +174,5 @@ export class AIService {
         return this.abortController?.signal.aborted;
     }
 }
+
+export default AIService;
