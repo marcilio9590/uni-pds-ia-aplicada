@@ -1,0 +1,12 @@
+{
+  "name": "exemplo-06-playwright-testes",
+  "version": "1.0.0",
+  "description": "Playwright-only test setup for vanilla-js-web-app-example.",
+  "scripts": {
+    "test": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.1"
+  }
+}
