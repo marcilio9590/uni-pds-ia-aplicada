@@ -7,3 +7,6 @@ exemplo-01/Ideias para usar o script.md
 exemplo-11-openrouter/.env
 exemplo-12-embeddings-neo4j/.env
 exemplo-12-embeddings-neo4j/neo4j/*
+exemplo-13-embeddings-neo4j-rag/.env
+exemplo-13-embeddings-neo4j-rag/neo4j/*
+exemplo-13-embeddings-neo4j-rag/respostas/*
