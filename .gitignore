@@ -5,3 +5,5 @@ node_modules/
 .vscode
 exemplo-01/Ideias para usar o script.md
 exemplo-11-openrouter/.env
+exemplo-12-embeddings-neo4j/.env
+exemplo-12-embeddings-neo4j/neo4j/*
