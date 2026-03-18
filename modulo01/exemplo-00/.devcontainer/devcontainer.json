@@ -1,0 +1,13 @@
+{
+    "name": "node20-tfjs",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bullseye",
+    "features": {},
+    "postCreateCommand": "npm install",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    }
+}
