@@ -1,6 +1,9 @@
+import { config } from "./config.ts";
+import { OpenRouterService } from "./openRouterService.ts";
 import { createServer } from "./server.ts";
 
-const app = createServer();
+const routerService = new OpenRouterService(config);
+const app = createServer(routerService);
 
 await app.listen({ port: 3000, host: "0.0.0.0" });
 console.log("Server running at 3000");
@@ -10,7 +13,7 @@ app
     method: "POST",
     url: "/chat",
     body: {
-      question: "Hello World",
+      question: "What is rate limiting?",
     },
   })
   .then((response) => {

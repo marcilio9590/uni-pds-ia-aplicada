@@ -1,12 +1,12 @@
 #All node_modules
 node_modules/
 
+# Ignore .env
+**/.env
+
 #VsCode
 .vscode
 modulo01/exemplo-01/Ideias para usar o script.md
-modulo01/exemplo-11-openrouter/.env
-modulo01/exemplo-12-embeddings-neo4j/.env
 modulo01/exemplo-12-embeddings-neo4j/neo4j/*
-modulo01/exemplo-13-embeddings-neo4j-rag/.env
 modulo01/exemplo-13-embeddings-neo4j-rag/neo4j/*
 modulo01/exemplo-13-embeddings-neo4j-rag/respostas/*

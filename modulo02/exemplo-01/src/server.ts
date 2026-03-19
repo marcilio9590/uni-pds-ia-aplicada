@@ -1,6 +1,7 @@
 import Fastify from "fastify";
+import { OpenRouterService } from "./openRouterService.ts";
 
-export const createServer = () => {
+export const createServer = (routerService: OpenRouterService) => {
   const app = Fastify();
 
   app.post(
@@ -22,7 +23,8 @@ export const createServer = () => {
     async (request, reply) => {
       try {
         const { question } = request.body as { question: string };
-        return reply.send("hello!");
+        const response = await routerService.generate(question);
+        return reply.send(response);
       } catch (error) {
         console.log("Error handling /chat request:", error);
         return reply.code(500);
