@@ -1,5 +1,6 @@
 import type { Runtime } from "@langchain/langgraph";
 import { AIMessage, HumanMessage } from "langchain";
+import { config } from "../../config.ts";
 import {
   ChatResponseSchema,
   getSystemPrompt,
@@ -47,12 +48,16 @@ export function createChatNode(
       };
     }
     const response = result.data;
+
+    const totalMessages = state.messages.length;
+    const needsSummarization = totalMessages >= config.maxMessageToSummary;
+
     return {
       messages: [new AIMessage(response.message)],
       extractedPreferences: response.shouldSavePreferences
         ? response.preferences
         : undefined,
-      needsSummarization: false,
+      needsSummarization,
     };
   };
 }

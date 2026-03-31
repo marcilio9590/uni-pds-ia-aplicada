@@ -16,6 +16,7 @@ export type ModelConfig = {
   memory: {
     dbUri: string;
   };
+  maxMessageToSummary: number;
 };
 
 console.assert(
@@ -27,7 +28,10 @@ export const config: ModelConfig = {
   apiKey: process.env.OPENROUTER_API_KEY!,
   httpReferer: "",
   xTitle: "IA Devs - Prompt Chaining Article Generator",
-  models: ["arcee-ai/trinity-large-preview:free"],
+  models: [
+    // "arcee-ai/trinity-large-preview:free",
+    "google/lyria-3-pro-preview",
+  ],
   provider: {
     sort: {
       by: "throughput", // Route to model with highest throughput (fastest response)
@@ -39,4 +43,5 @@ export const config: ModelConfig = {
     dbUri:
       "postgresql://postgres:mysecretpassword@localhost:5432/song_recommender",
   },
+  maxMessageToSummary: 2,
 };
