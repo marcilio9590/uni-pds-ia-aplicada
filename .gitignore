@@ -4,6 +4,9 @@ node_modules/
 # Ignore .env
 **/.env
 
+# Ignore .db
+**/*.db
+
 #VsCode
 .vscode
 modulo01/exemplo-01/Ideias para usar o script.md
