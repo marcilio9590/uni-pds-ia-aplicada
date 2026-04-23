@@ -22,7 +22,8 @@ export const config: ModelConfig = {
   httpReferer: '',
   xTitle: 'IA Devs - Transforming Services into Tools',
   models: [
-    'arcee-ai/trinity-large-preview:free',
+    // 'arcee-ai/trinity-large-preview:free',
+    'bytedance/seedance-2.0'
   ],
   provider: {
     sort: {
