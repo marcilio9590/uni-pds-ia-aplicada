@@ -23,7 +23,7 @@ export const config: ModelConfig = {
   xTitle: 'IA Devs - Transforming Services into Tools',
   models: [
     // 'arcee-ai/trinity-large-preview:free',
-    'bytedance/seedance-2.0'
+    'google/gemini-2.5-flash-lite'
   ],
   provider: {
     sort: {
@@ -32,5 +32,5 @@ export const config: ModelConfig = {
     },
   },
   temperature: 0.7,
-  maxTokens: 2048,
+  maxTokens: 4000, // ou mais
 };
